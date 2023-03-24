@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<head>
+    <h1>Words App Starting</h1>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+    <a href="NextPage.html">Link to next page</a>
+    <div class="c1">
+        <input id="t1" type="text">
+        <button value="Submit" onclick="componentDidMount()"></button>
+    </div>
+    <script>
+        items: [];
+        unique: true;
+        exactLetters: true;
+        startLetter = Document.getElementById("t1");
+        componentDidMount = () => {
+            fetch("http://localhost:8080/words/wordLikeLessLeter?startLetter=ifber&exactLetters=true&unique=true")
+                .then(res => res.json())
+                .then(
+                    (result) => {
+                        this.setState({
+                            isLoaded: true,
+                            items: result.WordsOut
+                        });
+                    },
+                    // Note: it's important to handle errors here
+                    // instead of a catch() block so that we don't swallow
+                    // exceptions from actual bugs in components.
+                    (error) => {
+
+                    }
+                )
+        }
+    </script>
+</body>
+
+
+</html>
